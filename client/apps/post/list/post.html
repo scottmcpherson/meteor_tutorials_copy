@@ -1,0 +1,17 @@
+<template name="post">
+	
+	<div class="{{ colClass }}">
+		<a class="thumb" href="{{viewPostPath}}{{url}}">
+		<div class="thumbnail clearfix">
+			<img src="{{ imageUrl }}" class="{{ isList }}">
+			<div class="caption">
+				<h1>{{ title }}</h1>
+				<p class="synopsis">{{ synopsis }}</p>
+				<p class="info">({{ videoLength }} min)  {{formatDate submitted}}</p>
+			</div>
+		</div>
+		</a>
+			
+	</div>
+	
+</template>

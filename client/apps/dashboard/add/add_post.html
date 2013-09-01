@@ -1,0 +1,119 @@
+<template name="addPost">
+{{#if isAdmin}}
+	
+	<div class="new-post-container">	
+		<div class="col-lg-4 setBg">
+			<ul class="util-nav">
+				<li class="pull-left">
+					<button class="btn btn-default take-live">Take Live</button>
+				</li>
+				<li class="pull-right">
+					<div class="btn-group full-small">
+						<button type="button" class="btn btn-default active full-view"><span class="glyphicon glyphicon-fullscreen"></span></button>
+						<button type="button" class="btn btn-default small-view"><span class="glyphicon glyphicon-resize-small"></span></button>		
+					</div>
+				</li>
+			</ul>
+
+			<ul class="post-nav">
+				<li class="post active">Post</li>
+				<li class="meta">Meta</li>
+			</ul>
+			
+			<form class="main">
+
+				<div class="post">
+						{{> aceEditor}}
+				</div>
+
+				<div class="hide meta">
+
+					<div class="form-group">
+						<div class="col-lg-12">
+							{{#isolate}}
+							<label class="control-label col-lg-12" for="title">Title 
+								<span class="pull-right title-length {{ titleLengthColor }}">{{ titleLength }}</span>
+							</label>
+							{{/isolate}}
+							<input type="text" class="col-lg-12" name="title" id="title" value="">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-12">
+
+							<label class="control-label col-lg-12" for="synopsis">Synopsis</label>
+							<textarea type="text" class="col-lg-12" name="synopsis" id="synopsis" rows="5"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-12">
+							<label class="control-label col-lg-12" for="url">URL</label>
+							<input type="text" class="col-lg-12" name="url" id="url" value="">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-12">
+							<label class="control-label col-lg-12" for="imageUrl">Image URL</label>
+							<input type="text" class="col-lg-12" name="imageUrl" id="imageUrl" value="">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-12">
+							<label class="control-label col-lg-12" for="videoUrl">Video URL</label>
+							<input type="text" class="col-lg-12" name="videoUrl" id="videoUrl" value="">
+						</div>
+					</div>
+					
+				</div>
+						
+			</form>
+		</div><!--  span3 -->
+		{{>addedPost}}
+	</div>
+
+{{else}}
+<h1>Error, This page does not exist.</h1>
+{{/if}}
+</template>
+
+<template name="addedPost">
+
+		{{#with addedPost}}
+			{{#if fullEditView}}
+				<div class="col-lg-8 pull-right">
+					
+						
+							{{#if videoUrl}}
+							{{#constant}}
+							<div class="video-wrapper">
+								<iframe width="560" height="315" src="{{ videoUrl }}" frameborder="0" allowfullscreen></iframe>
+							</div>
+							{{/constant}}
+							{{/if}}
+							<div class="content">
+								<h1>{{ title }}</h1>
+								{{{ postBody }}}
+							</div>
+						
+					
+				</div>
+			{{else}}
+				<div class="col-lg-3 col-offset-3">
+					<div class="thumbnail clearfix">
+						<img src="{{ listPostsPath }}{{ imageUrl }}">
+						<div class="caption">
+							<h1>{{ title }}</h1>
+							<p class="synopsis">{{ synopsis }}</p>
+							<p class="info">({{ videoLength }} min)  {{formatDate submitted}}</p>
+						</div>
+					</div>
+				</div>
+			{{/if}}
+			
+		{{/with}}
+	
+</template>

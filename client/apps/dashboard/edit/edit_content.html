@@ -1,0 +1,51 @@
+<template name="editContent">
+{{#if isAdmin}}
+{{#with currentContent}}
+<div class="container new-post-container">	
+	<div class="span4 setBg">
+		<ul class="post-nav">
+			<li class="post active">Post</li>
+			<li class="meta">Meta</li>
+		</ul>
+		<form class="main">
+
+			<div class="post">
+				{{> aceEditor}}
+			</div>
+
+			<div class="hide meta">
+				<div class="control-group">
+					<label class="control-label" for="title">Title</label>
+					<div class="controls">
+						<input type="text" name="title" id="title" value="{{ title }}" placeholder="Title">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="synopsis">Synopsis</label>
+					<div class="controls">
+						<textarea type="text" name="synopsis" id="synopsis" value="{{ synopsis }}"></textarea>
+					</div>
+				</div>
+			</div>
+					
+		</form>
+	</div><!--  span3 -->
+	<div class="span8 pull-right">
+		<div class="content-right">
+			<div class="content">
+				{{#if videoUrl}}
+				<div class="video-wrapper">
+					<iframe width="560" height="315" src="{{ videoUrl }}" frameborder="0" allowfullscreen></iframe>
+				</div>
+				{{/if}}
+				<h1>{{ title }}</h1>
+				{{{ postBody }}}
+			</div>
+		</div>
+	</div>
+</div>
+{{/with}}
+{{else}}
+<h1>Error, This page does not exist.</h1>
+{{/if}}
+</template>

@@ -1,0 +1,22 @@
+<template name="listPosts">
+
+	<div class="row">
+			
+			<!-- add controls -->
+			<!-- <div class="btn-group pull-right">
+				<button type="button" class="btn btn-default btn-grid {{ gridActive }}"><span class="glyphicon glyphicon-th"></span></button>
+				<button type="button" class="btn btn-default btn-list {{ listActive }}"><span class="glyphicon glyphicon-th-list"></span></button>
+			</div> -->
+		
+	</div>
+
+
+	
+	<div class="row list-post-row">
+		
+			{{#each posts}}
+				{{> post}}
+			{{/each}}
+		
+	</div>
+</template>

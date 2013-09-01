@@ -1,0 +1,37 @@
+<template name="listContent">
+
+<table class="table table-striped">
+{{#if isAdmin}}
+	<thead>
+        <tr>
+            <th>Title</th>
+            <th>Live</th>
+            <th>Submitted</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+     {{#each contents}}
+     <tr>
+	    {{>content}}
+ 	</tr>
+     {{/each}}
+    </tbody>
+</table>
+{{else}}
+    <h1>Error, This page does not exist.</h1>
+{{/if}}
+</template>
+
+
+
+<template name="content">
+<td>{{ title }}</td>
+<td>{{ live }}</td>
+<td>{{ submitted }}</td>
+<td>
+	<a href="{{ viewPostPath }}{{ url }}" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></a>
+	<a href="{{ addPostPath this }}" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+	<a href="#" class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span></a>
+</td>
+</template>
